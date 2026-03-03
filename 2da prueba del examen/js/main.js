@@ -22,11 +22,10 @@ function imprimirMensaje() {
     let points = document.getElementById('points').value;
 
     const nuevoAlumno = new Alumno(name, surname, points);
-    points = Number(points);
 
     return new Promise((resolve, reject)=>
     setTimeout(() =>{
-        if(!name || !surname || !points) {
+        if(!name || !surname || isNaN(points)) {
             reject ("Datos no válidos");
         } else {
         resolve({
