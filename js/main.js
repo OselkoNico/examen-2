@@ -1,8 +1,4 @@
 class Alumno {
-    nombre;
-    apellido;
-    puntos;
-
     constructor(nombreIn, apellidoIn, puntosIn){
         this.nombre = nombreIn;
         this.apellido = apellidoIn;
@@ -21,19 +17,19 @@ class Alumno {
 };
 
 function promesaAlumno() {
-    let nameIn = document.getElementById('name').value;
-    let surnameIn = document.getElementById('surname').value;
-    let pointsIn = document.getElementById('points').value;
+    let name = document.getElementById('name').value;
+    let surname = document.getElementById('surname').value;
+    let points = document.getElementById('points').value;
+    points = Number(points);
     return new Promise((resolve, reject)=>{
     setTimeout(()=>{
-        if (nameIn.length === 0 || surnameIn.length === 0 || pointsIn.length === 0){
+        if (!name || !surname || !points){
             reject(new Error(`Datos no válidos.`))
         } else {
-    pointsIn = Number(pointsIn);
-    const nuevoAlumno = new Alumno(nameIn, surnameIn, pointsIn);
+    const nuevoAlumno = new Alumno(name, surname, points);
     resolve({
-        alumno: nuevoAlumno,
-        mensaje: `${nuevoAlumno.nombre} ${nuevoAlumno.apellido} ${nuevoAlumno.getPuntos()}`})}
+        alumno: (nuevoAlumno.name && nuevoAlumno.surname),
+        mensaje: `${nuevoAlumno.getPuntos()}`})}
     }, 2000);
 })};
 
@@ -43,6 +39,5 @@ async function showUserResult() {
         console.log(user);
     } catch (error) {
         console.error(error);
-    }
-    
+    }  
 };
